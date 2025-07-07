@@ -7,8 +7,7 @@ import Game from "./bruin";
 
 const root = createRoot(document.getElementById("board"));
 root.render(
- <StrictMode>
+  <StrictMode>
     <Game />
   </StrictMode>
-
 );

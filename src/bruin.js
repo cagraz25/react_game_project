@@ -5,17 +5,30 @@ window.onload = function() {
 
 */
 
-import React from "react";
+import React from 'react';
+import { useState, useEffect } from 'react';
 
-export default function Game (){
+export default function Game() {
+    const [tiles, setTiles] = useState([]);
 
-    return(setGame());
-}
+    useEffect(() => {
+        setGame();
+    }, []);
 
-function setGame() {
-    for (let i = 0; i < 9; i++) {
-        let tile = document.createElement("div");
-        tile.id = i.toString();
-        document.getElementById("board").appendChild(tile);
+    function setGame() {
+        const newTiles = [];
+        for (let i = 0; i < 9; i++) {
+            newTiles.push({ id: i.toString() });
+        }
+        setTiles(newTiles);
     }
+
+    return (
+        <div id="trees">
+            {tiles.map(tile => (
+                <div key={tile.id} id={tile.id}></div>
+            ))}
+        </div>
+    );
 }
+
