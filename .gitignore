@@ -18,8 +18,9 @@
 .env.test.local
 .env.production.local
 
-/App.js
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# reference exapmle
+/src/App.js
