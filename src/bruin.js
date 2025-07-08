@@ -1,3 +1,10 @@
+/* 
+The following modification was done by Christopher Agraz on 7/8/25 at 12:35am:   
+
+bruin.js not in use at the moment, index.js is importing App from App.js instead
+
+*/
+
 const cursor = document.querySelector('.cursor')
 const den = [...document.querySelectorAll('.den')]
 const scoreEl = document.querySelector('.score span')
@@ -21,7 +28,7 @@ function run() {
         clearTimeout(timer);
         setTimeout(() => {
             if (targ_den.contains(img)) {
-            targ_den.removeChild(img);
+                targ_den.removeChild(img);
             }
             run();
         }, 500);

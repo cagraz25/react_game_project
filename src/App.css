@@ -1,3 +1,57 @@
+html,
+body {
+    height: 100%;
+}
+
+.grid {
+    width: 1836px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+}
+
+h1 {
+    color: white;
+    -webkit-text-stroke: 2px black;
+    text-align: center;
+    font-size: 100px;
+    font-family: 'Rubik Mono One';
+    text-shadow: 5px 5px black;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateX(-50%) translateY(30%);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.cursor {
+    height: 250px;
+    width: 200px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-image: url("./mallet.png");
+    background-size: 100% 100%;
+    transform: translate(-90%, -100%);
+    transition: transform .1s;
+    pointer-events: none;
+}
+
+.cursor.active {
+    transform: translate(-20%, -20%) rotate(75deg);
+}
+
+
+
+/* 
+
+// Christopher Agraz moved contents from bruin.css (lines 16-92) here on 7/8/25 at 12:21 am and delted bruin.css from /src
+
 *{
     margin: 0;
     padding: 0;
@@ -75,3 +129,5 @@ body {
 .cursor.active{
     transform: translate(-20%, -20%) rotate(75deg);
 }
+
+*/
