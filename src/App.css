@@ -74,93 +74,67 @@ h1 {
     transform: translate(-90%, -100%);
     transition: transform .1s;
     pointer-events: none;
+    z-index: 9999;
 }
 
 .cursor.active {
     transform: translate(-20%, -20%) rotate(75deg);
 }
 
-
-/* 
-
-// Christopher Agraz moved contents from bruin.css (lines 16-92) here on 7/8/25 at 12:21 am and delted bruin.css from /src
-
-*{
-    margin: 0;
-    padding: 0;
+.start-screen {
+   height: 100vh;
+   width: 100vw;
+   background-image: url("./clear.jpg");
+   background-size: 100% 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   font-family: 'Rubik Mono One', sans-serif;
+   text-align: center;
+   position: relative;
 }
 
-html, body{
-    height: 100%
+.start-title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: url("./blur.png");
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.start-instruction {
+  font-size: 3rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
 }
 
-.score{
-    font-size: 4em;
-    margin-bottom: .5em;
+.start-button {
+  margin-top: 7rem;
+  padding: 1rem 2rem;
+  font-size: 4rem;
+  background-color: #FFDC00;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-.board {
-    width: 1660px;
-    height: 1360px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 80px;
+.start-button:hover {
+  background-color: #f1c40f;
 }
 
-.den {
-    background: url("./den.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 500px;
-    height: 400px;
-    position: relative;
-    overflow: hidden;
+.title-image {
+  width: 2000px;
+  height: auto;
+  margin-bottom: 10rem;
 }
 
-.den .joe{
-    width: 35%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 30%;
-    animation: rise .2s ease-out;
+.footer-text {
+  position: absolute;
+  bottom: 20px;
+  font-size: 2rem;
+  font-family: 'Times New Roman';
+  color: rgb(25, 38, 230);
+  text-align: right;
+  opacity: 1;
 }
-@keyframes rise {
-    0%{
-        transform: translateX(-50%) translateY(30%);
-    }
-    100%{
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-.cursor{
-    height: 110px;
-    width: 100px;
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    background-image: url("./mallet.png");
-    background-size: 100% 100%;
-    transform: translate(-90%, -100%);
-    transition: transform .1s;
-    pointer-events: none;
-}
-
-.cursor.active{
-    transform: translate(-20%, -20%) rotate(75deg);
-}
-
-*/
