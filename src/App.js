@@ -39,18 +39,27 @@ function App() {
     }
 
     function getRandomDelay(score) {
-      if (score < 10) return getRandomBetween(1200, 1400);
-      if (score < 20) return getRandomBetween(800, 1000);
-      if (score < 30) return getRandomBetween(500, 800);
-      if (score < 40) return getRandomBetween(200, 500);
-      if (score < 50) return getRandomBetween(100, 200);
-      if (score < 60) return getRandomBetween(50, 100);
-      return 30;
+      if (score < 10) return getRandomBetween(1400, 1600);
+      else if (score < 20) return getRandomBetween(1200, 1400);
+      else if (score < 30) return getRandomBetween(900, 1200);
+      else if (score < 40) return getRandomBetween(700, 900);
+      else if (score < 50) return getRandomBetween(500, 700);
+      else if (score < 60) return getRandomBetween(400, 500);
+      else return 400;
+    }
+
+    function getVisibleTime(score) {
+      if (score < 10) return getRandomBetween(1400, 1600);
+      else if (score < 20) return getRandomBetween(1200, 1400);
+      else if (score < 30) return getRandomBetween(900, 1200);
+      else if (score < 40) return getRandomBetween(700, 900);
+      else if (score < 50) return getRandomBetween(600, 700);
+      else return getRandomBetween(300, 600);
     }
 
     function gameLoop() {
       const delay = getRandomDelay(score);
-      const visibleTime = getRandomBetween(500, 1000);
+      const visibleTime = getVisibleTime(score);
       const randomIndex = Math.floor(Math.random() * bears.length);
 
       showBear(randomIndex);
