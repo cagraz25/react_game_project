@@ -7,13 +7,6 @@ body {
     cursor: none;
 }
 
-.grid {
-    width: 1836px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin: 0 auto;
-}
-
 h1 {
     color: white;
     -webkit-text-stroke: 2px black;
@@ -23,14 +16,51 @@ h1 {
     text-shadow: 5px 5px black;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.cell {
+    position: relative;
+    width: 612px;
+    height: 612px;
+    margin: 5px;
+    cursor: none;
+}
+
+.den,
+.bear {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    pointer-events: none;
+}
+
 @keyframes rise {
     0% {
-        transform: translateX(-50%) translateY(30%);
+        transform: translateX(-50%) translateY(-30%);
+        opacity: 0;
     }
 
     100% {
-        transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(-50%);
+        opacity: 1;
     }
+}
+
+.bear {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 40%;
+    left: 50%;
+    width: 40%;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    animation: rise 0.2s ease-out;
 }
 
 .cursor {
@@ -49,7 +79,6 @@ h1 {
 .cursor.active {
     transform: translate(-20%, -20%) rotate(75deg);
 }
-
 
 
 /* 

@@ -83,16 +83,19 @@ function App() {
       <h1>Score: {score}</h1>
       <div className="grid">
         {bears.map((isBear, idx) => (
-          <img key={idx} src={isBear ? bear : den} draggable="false" alt={isBear ? "Bear" : "Den"}
-            onClick={() => {
-              if (isBear) {
-                wackBear(idx);
-                hitSound.play();
-              } else {
-                missSound.play();
-              }
-            }}
-          />
+          <div key={idx} className="cell" onClick={() => {
+            if (isBear) {
+              wackBear(idx);
+              new Audio("./smash.mp3").play();
+            } else {
+              new Audio("./woosh.wav").play();
+            }
+          }}>
+            <img src={den} alt="Den" draggable="false" />
+            {isBear && (
+              <img src={bear} alt="Bear" className="bear" draggable="false" />
+            )}
+          </div>
         ))}
       </div>
       <div ref={cursorRef} className='cursor'></div>
