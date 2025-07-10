@@ -1,5 +1,3 @@
-// Christopher Agraz added lines 1-19 on 7/8/25 at 12:22am
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -20,25 +18,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-
-
-
-/* 
-  Christopher Agraz commented out lines 27-39 on 7/8/25 at 12:22am
-
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-
-
-import "./bruin.css";
-import Game from "./bruin";
-
-const root = createRoot(document.getElementById("board"));
-root.render(
-  <StrictMode>
-    <Game />
-  </StrictMode>
-);
-
-*/

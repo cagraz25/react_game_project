@@ -135,8 +135,8 @@ function App() {
             Start Game
           </button>
           <p className="footer-text">credits: Music from #Uppbeat (free for Creators!):
-https://uppbeat.io/t/kevin-macleod/meatball-parade
-License code: LY0HONXRY6QQCGTV</p>
+            https://uppbeat.io/t/kevin-macleod/meatball-parade
+            License code: LY0HONXRY6QQCGTV</p>
         </div>
       ) : (
         <>
