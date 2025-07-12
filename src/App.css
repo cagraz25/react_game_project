@@ -4,6 +4,10 @@ body {
 }
 
 body {
+  cursor: default;
+}
+
+body.game-on {
   cursor: none;
 }
 

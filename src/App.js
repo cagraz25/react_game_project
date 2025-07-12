@@ -6,6 +6,7 @@ import bear from './joe.png';
 const hitSound = new Audio('./smash.mp3');
 const missSound = new Audio('./woosh.wav');
 
+
 function App() {
   const [score, setScore] = useState(0);
   const [bears, setBears] = useState(new Array(9).fill(false));
@@ -28,6 +29,14 @@ function App() {
     }
     setHasStarted(true);
   };
+
+  useEffect(() => {
+    if (hasStarted) {
+      document.body.classList.add('game-on');
+    } else {
+      document.body.classList.remove('game-on');
+    }
+  }, [hasStarted]);
 
   useEffect(() => {
     if (!hasStarted) return;
@@ -102,6 +111,8 @@ function App() {
   }
 
   useEffect(() => {
+    if (!hasStarted) return;
+
     const cursor = cursorRef.current;
     if (!cursor) return;
 
@@ -122,7 +133,7 @@ function App() {
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
     };
-  }, []);
+  }, [hasStarted]);
 
   return (
     <>
@@ -169,7 +180,7 @@ function App() {
           </div>
         </>
       )}
-      <div ref={cursorRef} className="cursor"></div>
+      {hasStarted && <div ref={cursorRef} className="cursor"></div>}
     </>
   );
 }
