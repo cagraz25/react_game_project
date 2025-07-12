@@ -54,12 +54,12 @@ function App() {
     }
 
     function getVisibleTime(score) {
-      if (score < 10) return getRandomBetween(1400, 1600);
-      else if (score < 20) return getRandomBetween(1200, 1400);
-      else if (score < 30) return getRandomBetween(900, 1200);
-      else if (score < 40) return getRandomBetween(700, 900);
-      else if (score < 50) return getRandomBetween(600, 700);
-      else return getRandomBetween(300, 600);
+      if (score < 10) return getRandomBetween(1150, 1250);
+      else if (score < 20) return getRandomBetween(1050, 1150);
+      else if (score < 30) return getRandomBetween(1000, 1050);
+      else if (score < 40) return getRandomBetween(950, 1000);
+      else if (score < 50) return getRandomBetween(925, 950);
+      else return getRandomBetween(825, 900);
     }
 
     function gameLoop() {
