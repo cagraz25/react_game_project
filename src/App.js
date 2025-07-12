@@ -6,11 +6,12 @@ import bear from './joe.png';
 const hitSound = new Audio('./smash.mp3');
 const missSound = new Audio('./woosh.wav');
 
-
 function App() {
   const [score, setScore] = useState(0);
   const [bears, setBears] = useState(new Array(9).fill(false));
   const [hasStarted, setHasStarted] = useState(false);
+  const [misses, setMisses] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
   const cursorRef = useRef(null);
   const audioRef = useRef(null);
 
@@ -27,19 +28,14 @@ function App() {
         console.log('Playback error:', err)
       );
     }
+    setScore(0);
+    setMisses(0);
+    setGameOver(false);
     setHasStarted(true);
   };
 
   useEffect(() => {
-    if (hasStarted) {
-      document.body.classList.add('game-on');
-    } else {
-      document.body.classList.remove('game-on');
-    }
-  }, [hasStarted]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
+    if (!hasStarted || gameOver) return;
 
     let isCancelled = false;
 
@@ -75,7 +71,7 @@ function App() {
 
       setTimeout(() => {
         hideBear(randomIndex);
-        if (!isCancelled) {
+        if (!isCancelled && !gameOver) {
           setTimeout(gameLoop, delay);
         }
       }, visibleTime);
@@ -86,7 +82,7 @@ function App() {
     return () => {
       isCancelled = true;
     };
-  }, [hasStarted, score, bears.length]);
+  }, [hasStarted, score, bears.length, gameOver]);
 
   function showBear(index) {
     setBears((curBears) => {
@@ -111,8 +107,6 @@ function App() {
   }
 
   useEffect(() => {
-    if (!hasStarted) return;
-
     const cursor = cursorRef.current;
     if (!cursor) return;
 
@@ -133,7 +127,7 @@ function App() {
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
     };
-  }, [hasStarted]);
+  }, []);
 
   return (
     <>
@@ -145,24 +139,36 @@ function App() {
           <button className="start-button" onClick={startGame}>
             Start Game
           </button>
-          <p className="footer-text">credits: Music from #Uppbeat (free for Creators!):
-            https://uppbeat.io/t/kevin-macleod/meatball-parade
-            License code: LY0HONXRY6QQCGTV</p>
+          <p className="footer-text">
+            credits: Music from #Uppbeat (free for Creators!):<br />
+            https://uppbeat.io/t/kevin-macleod/meatball-parade<br />
+            License code: LY0HONXRY6QQCGTV
+          </p>
         </div>
       ) : (
         <>
           <h1>Score: {score}</h1>
-          <div className="grid">
+          <div className={`grid ${gameOver ? 'game-over-hidden' : ''}`}>
             {bears.map((isBear, idx) => (
               <div
                 key={idx}
                 className="cell"
                 onClick={() => {
+                  if (gameOver) return;
+
                   if (isBear) {
                     wackBear(idx);
                     hitSound.play();
                   } else {
                     missSound.play();
+                    setMisses(prev => {
+                      const nextMisses = prev + 1;
+                      if (nextMisses >= 5) {
+                        setGameOver(true);
+                        if (audioRef.current) audioRef.current.pause();
+                      }
+                      return nextMisses;
+                    });
                   }
                 }}
               >
@@ -178,9 +184,17 @@ function App() {
               </div>
             ))}
           </div>
+
+          {gameOver && (
+            <div className="game-over">
+              <h1>Game Over</h1>
+              <p>You got 5 strikes!</p>
+              <p>Your final score: {score}</p>
+            </div>
+          )}
         </>
       )}
-      {hasStarted && <div ref={cursorRef} className="cursor"></div>}
+      <div ref={cursorRef} className="cursor"></div>
     </>
   );
 }
